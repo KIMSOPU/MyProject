@@ -22,7 +22,7 @@
 	 <c:forEach items="${list}" var="list">
 	 	<tr>
 	 		<td>${list.bno}</td>
-	 		<td>${list.title}</td>
+			<td><a href="/board/view?bno=${list.bno}">${list.title}</a></td>
 	 		<td>${list.regDate}</td>
 	 		<td>${list.writer}</td>
 	 		<td>${list.viewCnt}</td>
@@ -30,8 +30,12 @@
 	 </c:forEach>
 	
 	</tbody>		
-
+	
 </table>
+<form method="POST" name="form">
+	<button type="submit" onclick="javascript: form.action='/board/write'">게시물 작성하기</button>
+	<button type="submit" onclick="javascript: form.action='/board/write'">메인화면으로 되돌아가기</button>
 
+</form>
 </body>
 </html>

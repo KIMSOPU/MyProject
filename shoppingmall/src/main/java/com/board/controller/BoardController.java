@@ -19,7 +19,7 @@ public class BoardController {
 	@Inject
 	BoardService service;
 	
-// 게시물 조회	
+// 게시물 리스트 조회	
  @RequestMapping(value = "/list", method = RequestMethod.GET)
  public void getList(Model model) throws Exception {
   
@@ -42,6 +42,12 @@ public class BoardController {
 	
 	 // 모든 작업을 마치고 다시 /board/list, 즉 게시물 목록 화면으로 되돌아가겠다.
 	 return "redirect:/board/list";
+ }
+ 
+ // 게시물 상세조회
+ @RequestMapping(value = "/view", method = RequestMethod.GET)
+ public void getView() throws Exception{
+	 
  }
  
  
