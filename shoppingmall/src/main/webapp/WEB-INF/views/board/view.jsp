@@ -19,6 +19,10 @@
 <label>내용</label>
 <textarea cols="50" rows="5" name="content" value="${view.content}"></textarea><br />
 
+<div>
+<a href="/board/modify?bno=${view.bno}">게시물 수정</a>
+</div>
+
 <!-- <button type="submit">작성</button> -->
 </form>
 

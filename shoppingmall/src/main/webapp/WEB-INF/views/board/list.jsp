@@ -34,7 +34,7 @@
 </table>
 <form method="POST" name="form">
 	<button type="submit" onclick="javascript: form.action='/board/write'">게시물 작성하기</button>
-	<button type="submit" onclick="javascript: form.action='/board/write'">메인화면으로 되돌아가기</button>
+	<button type="submit" onclick="location.href='home.jsp'">메인화면으로 되돌아가기</button>
 
 </form>
 </body>
