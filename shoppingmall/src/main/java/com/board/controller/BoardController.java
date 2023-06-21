@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.board.domain.BoardVO;
 import com.board.service.BoardService;
@@ -46,7 +47,10 @@ public class BoardController {
  
  // 게시물 상세조회
  @RequestMapping(value = "/view", method = RequestMethod.GET)
- public void getView() throws Exception{
+ public void getView(@RequestParam("bno") int bno, Model model) throws Exception{
+	 
+	 BoardVO vo = service.view(bno);
+	 model.addAttribute("view", vo);
 	 
  }
  
