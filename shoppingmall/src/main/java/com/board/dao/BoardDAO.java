@@ -17,20 +17,27 @@ public class BoardDAO {
 	private static String namespace = "com.board.mappers.board";
 
 	// 게시판 목록
-	public List<BoardVO> list() throws Exception{
-		
+	public List<BoardVO> list() throws Exception {
+
 		return sql.selectList(namespace + ".list");
 	};
-	
-	//게시물 작성
-	public void write(BoardVO vo)throws Exception{
+
+	// 게시물 작성
+	public void write(BoardVO vo) throws Exception {
+		
 		sql.insert(namespace + ".write", vo);
 	}
-	
+
 	// 게시물 조회
 	public BoardVO view(int bno) throws Exception {
-	 
-	 return sql.selectOne(namespace + ".view", bno);
+
+		return sql.selectOne(namespace + ".view", bno);
 	}
-	
+
+	// 게시물 수정
+	public void modify(BoardVO vo) throws Exception {
+		
+		sql.update(namespace + ".modify", vo);
+	};
+
 }

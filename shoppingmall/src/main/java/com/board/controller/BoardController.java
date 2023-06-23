@@ -20,14 +20,12 @@ public class BoardController {
 	@Inject
 	BoardService service;
 
-// 게시물 리스트 조회	
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	// 게시물 리스트 조회
+	@RequestMapping(value = "/list")
 	public void getList(Model model) throws Exception {
 
 		List<BoardVO> list = service.list();
-
 		model.addAttribute("list", list);
-
 	}
 
 	// 게시물 작성
@@ -40,7 +38,6 @@ public class BoardController {
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public String postWrite(BoardVO vo) throws Exception {
 		service.write(vo);
-
 		// 모든 작업을 마치고 다시 /board/list, 즉 게시물 목록 화면으로 되돌아가겠다.
 		return "redirect:/board/list";
 	}
@@ -51,7 +48,6 @@ public class BoardController {
 
 		BoardVO vo = service.view(bno);
 		model.addAttribute("view", vo);
-
 	}
 
 	// 게시물 수정
@@ -59,8 +55,15 @@ public class BoardController {
 	public void getModify(@RequestParam("bno") int bno, Model model) throws Exception {
 
 		BoardVO vo = service.view(bno);
-
 		model.addAttribute("view", vo);
+	}
+
+	// 게시물 수정2
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public String postModify(BoardVO vo) throws Exception {
+
+		service.modify(vo);
+		return "redirect:/board/view?bno=" + vo.getBno();
 	}
 
 }
