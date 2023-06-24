@@ -8,6 +8,15 @@
 </head>
 <body>
 
+<div id="nav">
+ <%@ include file="../include/nav.jsp" %>
+</div>
+	
+	<script type="text/javascript">
+		function goBack() {
+			window.history.back();
+		}
+	</script>
 <form method="post">
 
 <label>제목</label>
@@ -20,6 +29,7 @@
 <textarea cols="50" rows="5" name="content"></textarea><br />
 
 <button type="submit">작성</button>
+<button href="#" onclick="goBack();">뒤로가기</button>
 
 </form>
 
