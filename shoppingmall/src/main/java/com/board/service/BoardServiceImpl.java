@@ -48,4 +48,8 @@ public void delete(int bno) throws Exception {
 	dao.delete(bno);
 }
 
+// 게시물 조회수 증가
+/*
+ * @Override public void setViewCnt(BoardVO badVO) { dao.setViewCnt(badVO); }
+ */
 }

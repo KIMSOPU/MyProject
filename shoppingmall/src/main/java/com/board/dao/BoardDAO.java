@@ -44,5 +44,9 @@ public class BoardDAO {
 	public void delete(int bno) throws Exception {
 	 sql.delete(namespace + ".delete", bno);
 	}
-
+	// 게시물 조회수 증가
+	/*
+	 * public void setViewCnt(BoardVO badVO) { sql.insert(namespace + ".setViewCnt",
+	 * badVO); }
+	 */
 }

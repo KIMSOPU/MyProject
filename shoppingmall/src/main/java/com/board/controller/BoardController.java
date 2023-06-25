@@ -2,8 +2,8 @@ package com.board.controller;
 
 import java.util.List;
 
-import javax.inject.Inject;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,15 +17,17 @@ import com.board.service.BoardService;
 @RequestMapping(value = "/board/")
 public class BoardController {
 
-	@Inject
+	@Autowired
 	BoardService service;
 
 	// 게시물 리스트 조회
 	@RequestMapping(value = "/list")
-	public void getList(Model model) throws Exception {
+	public String getList(Model model) throws Exception {
 
 		List<BoardVO> list = service.list();
 		model.addAttribute("list", list);
+
+		return "board/list";
 	}
 
 	// 게시물 작성
@@ -44,10 +46,14 @@ public class BoardController {
 
 	// 게시물 상세조회
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
-	public void getView(@RequestParam("bno") int bno, Model model) throws Exception {
+	public void getView(@RequestParam("bno") int bno, Model model, BoardVO badVO) throws Exception {
 
 		BoardVO vo = service.view(bno);
+		// 게시물 조회수 증가 
+		// service.setViewCnt(badVO);
+		
 		model.addAttribute("view", vo);
+		
 	}
 
 	// 게시물 수정

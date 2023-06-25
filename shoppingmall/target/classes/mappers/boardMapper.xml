@@ -7,14 +7,16 @@
 	<!-- 게시물 목록 -->
 	<select id="list" resultType="com.board.domain.BoardVO">
 		SELECT
-		bno, title, content, writer, regDate, viewCnt
+		bno, title, content, writer,
+		regDate, viewCnt
 		FROM tbl_board
 	</select>
 
 	<!-- 게시물 작성 -->
 	<insert id="write" parameterType="com.board.domain.BoardVO">
 		INSERT INTO
-		tbl_board(title, content, writer)
+		tbl_board(title,
+		content, writer)
 		VALUES(#{title}, #{content}, #{writer})
 	</insert>
 
@@ -33,7 +35,8 @@
 	<update id="modify" parameterType="com.board.domain.BoardVO">
 		UPDATE tbl_board
 		SET
-		title = #{title},
+		title =
+		#{title},
 		content = #{content},
 		writer = #{writer}
 		WHERE bno = #{bno}
@@ -43,8 +46,16 @@
 	<delete id="delete" parameterType="int">
 		DELETE
 		FROM tbl_board
-		WHERE bno = #{bno}
+		WHERE bno
+		= #{bno}
 	</delete>
 
+	<!-- 게시물 조회수 1씩 증가 -->
+<!-- 	<insert id="setViewCnt" parameterType="com.board.domain.BoardVO">
+		INSERT INTO tbl_board VALUES((SELECT NVL(MAX(viewCnt),0)+1 ))
+		WHERE bno =
+		#{bno}
+	</insert>
+ -->
 
 </mapper>
