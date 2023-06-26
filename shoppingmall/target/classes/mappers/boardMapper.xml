@@ -58,4 +58,10 @@
 	</insert>
  -->
 
+
+	<!-- 게시물 총 갯수 -->
+	<select id="count" resultType="int">
+	 select count(bno) from tbl_board
+	</select>
+
 </mapper>
