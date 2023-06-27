@@ -23,4 +23,6 @@ public interface BoardService {
 	// 게시물 조회수 등록
 	/* public void setViewCnt(BoardVO badVO); */
 	
+	// 게시물 총 갯수
+	public int count() throws Exception;
 }

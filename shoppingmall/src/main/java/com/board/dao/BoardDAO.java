@@ -49,4 +49,10 @@ public class BoardDAO {
 	 * public void setViewCnt(BoardVO badVO) { sql.insert(namespace + ".setViewCnt",
 	 * badVO); }
 	 */
+	
+	// 게시물 총 갯수
+	public int count() throws Exception {
+	 return sql.selectOne(namespace + ".count"); 
+	}
+	
 }

@@ -12,44 +12,50 @@ import com.board.domain.BoardVO;
 @Service
 public class BoardServiceImpl implements BoardService {
 
- @Inject
- private BoardDAO dao;
- 
- // 게시물 리스트 조회
- @Override
- public List<BoardVO> list() throws Exception{
+	@Inject
+	private BoardDAO dao;
 
-  return dao.list();
- }
+	// 게시물 리스트 조회
+	@Override
+	public List<BoardVO> list() throws Exception {
 
- // 게시물 작성
- @Override
- public void write(BoardVO vo) throws Exception {
+		return dao.list();
+	}
 
-	 dao.write(vo);
-};
+	// 게시물 작성
+	@Override
+	public void write(BoardVO vo) throws Exception {
+
+		dao.write(vo);
+	};
 
 // 게시물 상세조회
-@Override
-public BoardVO view(int bno) throws Exception {
+	@Override
+	public BoardVO view(int bno) throws Exception {
 
-return dao.view(bno);
-}
+		return dao.view(bno);
+	}
 
 // 게시물 수정
-@Override
-public void modify(BoardVO vo) throws Exception {
+	@Override
+	public void modify(BoardVO vo) throws Exception {
 
-	dao.modify(vo);
-}
+		dao.modify(vo);
+	}
 
-@Override
-public void delete(int bno) throws Exception {
-	dao.delete(bno);
-}
+	@Override
+	public void delete(int bno) throws Exception {
+		dao.delete(bno);
+	}
 
 // 게시물 조회수 증가
-/*
- * @Override public void setViewCnt(BoardVO badVO) { dao.setViewCnt(badVO); }
- */
+	/*
+	 * @Override public void setViewCnt(BoardVO badVO) { dao.setViewCnt(badVO); }
+	 */
+
+//게시물 총 갯수
+	@Override
+	public int count() throws Exception {
+		return dao.count();
+	}
 }
