@@ -51,17 +51,25 @@
 	</delete>
 
 	<!-- 게시물 조회수 1씩 증가 -->
-<!-- 	<insert id="setViewCnt" parameterType="com.board.domain.BoardVO">
-		INSERT INTO tbl_board VALUES((SELECT NVL(MAX(viewCnt),0)+1 ))
-		WHERE bno =
-		#{bno}
-	</insert>
- -->
+	<!-- <insert id="setViewCnt" parameterType="com.board.domain.BoardVO"> INSERT 
+		INTO tbl_board VALUES((SELECT NVL(MAX(viewCnt),0)+1 )) WHERE bno = #{bno} 
+		</insert> -->
 
 
 	<!-- 게시물 총 갯수 -->
 	<select id="count" resultType="int">
-	 select count(bno) from tbl_board
+		select count(bno) from tbl_board
+	</select>
+
+
+	<!-- 게시물 목록 + 페이징 -->
+	<select id="listPage" parameterType="hashMap"
+		resultType="com.board.domain.BoardVO">
+		select
+		bno, title, writer, regDate, viewCnt
+		from tbl_board
+		order by bno desc
+		limit #{displayPost}, #{postNum}
 	</select>
 
 </mapper>
