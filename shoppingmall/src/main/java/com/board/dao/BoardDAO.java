@@ -1,5 +1,6 @@
 package com.board.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -54,5 +55,20 @@ public class BoardDAO {
 	public int count() throws Exception {
 	 return sql.selectOne(namespace + ".count"); 
 	}
+	
+	
+	// 게시물 목록 + 페이징
+	public List<BoardVO> listPage(int displayPost, int postNum) throws Exception {
+
+	HashMap<String, Object> data = new HashMap<String, Object>();
+		
+	 data.put("displayPost", displayPost);
+	 data.put("postNum", postNum);
+	  
+	 return sql.selectList(namespace + ".listPage", data);
+	}
+	
+	
+	
 	
 }
