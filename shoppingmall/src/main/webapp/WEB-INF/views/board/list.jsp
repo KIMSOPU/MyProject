@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,9 +10,9 @@
 </head>
 <body>
 
-<div id="nav">
- <%@ include file="../include/nav.jsp" %>
-</div>
+	<div id="nav">
+		<%@ include file="../include/nav.jsp"%>
+	</div>
 
 	<script type="text/javascript">
 		function goBack() {
@@ -35,9 +35,8 @@
 				<tr>
 					<td>${list.bno}</td>
 					<td><a href="/board/view?bno=${list.bno}">${list.title}</a></td>
-					<td>
-						<fmt:formatDate value="${list.regDate}" pattern="YYYY-MM-DD"/>
-</td>
+					<td><fmt:formatDate value="${list.regDate}"
+							pattern="YYYY-MM-DD" /></td>
 					<td>${list.writer}</td>
 					<td>${list.viewCnt}</td>
 				</tr>
@@ -46,6 +45,15 @@
 		</tbody>
 
 	</table>
+
+	<div>
+		<c:forEach begin="1" end="${pageNum}" var="num">
+			<span> <a href="/board/listPage?num=${num}">${num}</a>
+			</span>
+		</c:forEach>
+	</div>
+
+
 	<button onclick="window.location.href='write'">작성하기</button>
 	<button href="#" onclick="goBack();">뒤로가기</button>
 </body>
