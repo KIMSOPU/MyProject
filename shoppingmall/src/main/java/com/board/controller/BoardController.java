@@ -85,8 +85,7 @@ public class BoardController {
 	@RequestMapping(value = "/listpage", method = RequestMethod.GET)
 	public void getListPage(Model model) throws Exception {
 	  
-	 List<BoardVO> list = null; 
-	 list = service.list();
+	 List<BoardVO> list = service.list();
 	 model.addAttribute("list", list);   
 	}
 	
@@ -105,9 +104,15 @@ public class BoardController {
 	  
 	 // 출력할 게시물
 	 int displayPost = (num - 1) * postNum;
-	    
-	 List<BoardVO> list = null; 
-	 list = service.listPage(displayPost, postNum);
+	 
+	 // 한번에 표시할 페이징 번호의 갯수
+	 int pageNum_cnt = 10;
+	 
+	 // 표시되는 페이지 번호 중 마지막 번호
+	 int endPageNum = (int)(Math.ceil((double)num / (double)pageNum_cnt) * pageNum_cnt);
+	   
+	 
+	 List<BoardVO> list = service.listPage(displayPost, postNum);
 	 model.addAttribute("list", list);   
 	 model.addAttribute("pageNum", pageNum);
 	}
