@@ -46,10 +46,14 @@
 
 	</table>
 
+	<div>
+		<c:forEach begin="1" end="${pageNum}" var="num">
+			<span> <a href="/board/listPage?num=${num}">${num}</a>
+			</span>
+		</c:forEach>
+	</div>
 
 
-	<button onclick="window.location.href='write'">작성하기</button>
-	<button href="#" onclick="goBack();">뒤로가기</button>
 </body>
 
 </html>
