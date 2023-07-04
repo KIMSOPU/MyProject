@@ -18,9 +18,9 @@ public class BoardDAO {
 	private static String namespace = "com.board.mappers.board";
 
 	// 게시판 목록
-	public List<BoardVO> list() throws Exception {
+	public List<BoardVO> getList() throws Exception {
 
-		return sql.selectList(namespace + ".list");
+		return sql.selectList(namespace + ".getList");
 	};
 
 	// 게시물 작성

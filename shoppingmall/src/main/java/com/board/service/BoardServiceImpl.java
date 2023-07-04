@@ -13,55 +13,57 @@ import com.board.domain.BoardVO;
 public class BoardServiceImpl implements BoardService {
 
 	@Inject
-	private BoardDAO dao;
+	private BoardDAO boardDAO;
 
 	// 게시물 리스트 조회
 	@Override
-	public List<BoardVO> list() throws Exception {
+	public List<BoardVO> getList() throws Exception {
 
-		return dao.list();
+		return boardDAO.getList();
 	}
 
 	// 게시물 작성
 	@Override
 	public void write(BoardVO vo) throws Exception {
 
-		dao.write(vo);
+		boardDAO.write(vo);
 	};
 
-// 게시물 상세조회
+	// 게시물 상세조회
 	@Override
 	public BoardVO view(int bno) throws Exception {
 
-		return dao.view(bno);
+		return boardDAO.view(bno);
 	}
 
-// 게시물 수정
+	// 게시물 수정
 	@Override
 	public void modify(BoardVO vo) throws Exception {
 
-		dao.modify(vo);
+		boardDAO.modify(vo);
 	}
 
+	// 게시물 삭제
 	@Override
 	public void delete(int bno) throws Exception {
-		dao.delete(bno);
+		boardDAO.delete(bno);
 	}
 
-// 게시물 조회수 증가
+	// 게시물 조회수 증가
 	/*
-	 * @Override public void setViewCnt(BoardVO badVO) { dao.setViewCnt(badVO); }
+	 * @Override public void setViewCnt(BoardVO badVO) { boardDAO.setViewCnt(badVO);
+	 * }
 	 */
 
 //게시물 총 갯수
 	@Override
 	public int count() throws Exception {
-		return dao.count();
+		return boardDAO.count();
 	}
 
 	// 게시물 목록 + 페이징
 	@Override
 	public List<BoardVO> listPage(int displayPost, int postNum) throws Exception {
-		return dao.listPage(displayPost, postNum);
+		return boardDAO.listPage(displayPost, postNum);
 	}
 }

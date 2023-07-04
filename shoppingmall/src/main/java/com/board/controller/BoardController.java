@@ -1,14 +1,13 @@
 package com.board.controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.board.domain.BoardVO;
 import com.board.service.BoardService;
 
@@ -17,84 +16,84 @@ import com.board.service.BoardService;
 public class BoardController {
 
 	@Autowired
-	BoardService service;
+	BoardService boardService;
 
 	// 게시물 리스트 조회
 	@RequestMapping(value = "/list")
 	public String getList(Model model) throws Exception {
-
-		List<BoardVO> list = service.list();
+		
+		List<BoardVO> list = boardService.getList();
 		model.addAttribute("list", list);
 
-		return "board/list";
+		return "board/boardList";
 	}
 
 	// 게시물 작성
-	@RequestMapping(value = "/write", method = RequestMethod.GET)
+	@GetMapping("/write")
 	public void getWrite() throws Exception {
 
 	}
 
 	// 게시물 작성
-	@RequestMapping(value = "/write", method = RequestMethod.POST)
-	public String postWrite(BoardVO vo) throws Exception {
-		service.write(vo);
+	@PostMapping("/write")
+	public String postWrite(BoardVO boardVO) throws Exception {
+		boardService.write(boardVO);
 		// 모든 작업을 마치고 다시 /board/list, 즉 게시물 목록 화면으로 되돌아가겠다.
-		return "redirect:/board/list";
+		return "redirect:/board/boardList";
 	}
 
 	// 게시물 상세조회
-	@RequestMapping(value = "/view", method = RequestMethod.GET)
+	@GetMapping("/view")
 	public void getView(@RequestParam("bno") int bno, Model model, BoardVO badVO) throws Exception {
 
-		BoardVO vo = service.view(bno);
+		BoardVO vo = boardService.view(bno);
 		// 게시물 조회수 증가 
-		// service.setViewCnt(badVO);
+		// boardService.setViewCnt(badVO);
 		
 		model.addAttribute("view", vo);
 		
 	}
 
 	// 게시물 수정
-	@RequestMapping(value = "/modify", method = RequestMethod.GET)
+	@GetMapping("/modify")
 	public void getModify(@RequestParam("bno") int bno, Model model) throws Exception {
 
-		BoardVO vo = service.view(bno);
-		model.addAttribute("view", vo);
+		BoardVO boardVO = boardService.view(bno);
+		model.addAttribute("view", boardVO);
 	}
 
 	// 게시물 수정2
-	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	@PostMapping("/modify")
 	public String postModify(BoardVO vo) throws Exception {
 
-		service.modify(vo);
+		boardService.modify(vo);
 		return "redirect:/board/view?bno=" + vo.getBno();
 	}
 
 	// 게시물 삭제
-	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	@GetMapping("/delete")
 	public String getDelete(@RequestParam("bno") int bno) throws Exception {
 	  
-	 service.delete(bno);  
+	 boardService.delete(bno);  
 
-	 return "redirect:/board/list";
+	 return "redirect:/board/boardList";
 	}
 	
 	
 	// 게시물 목록 + 페이징 추가
-	@RequestMapping(value = "/listpage", method = RequestMethod.GET)
+	@GetMapping("/listpage")
 	public void getListPage(Model model) throws Exception {
 	  
-	 List<BoardVO> list = service.list();
+	 List<BoardVO> list = boardService.getList();
 	 model.addAttribute("list", list);   
 	}
 	
 	// 게시물 목록 + 페이징 추가
-	@RequestMapping(value = "/listPage", method = RequestMethod.GET)
+	@GetMapping("/listPage")
 	public void getListPage(Model model, @RequestParam("num") int num) throws Exception {
 	 
 	 // 게시물 총 갯수
-	 int count = service.count();
+	 int count = boardService.count();
 	  
 	 // 한 페이지에 출력할 게시물 갯수
 	 int postNum = 10;
@@ -121,7 +120,7 @@ public class BoardController {
 	  endPageNum = endPageNum_tmp;
 	 }
 	 
-	 List<BoardVO> list = service.listPage(displayPost, postNum);
+	 List<BoardVO> list = boardService.listPage(displayPost, postNum);
 	 model.addAttribute("list", list);   
 	 model.addAttribute("pageNum", pageNum);
 	}

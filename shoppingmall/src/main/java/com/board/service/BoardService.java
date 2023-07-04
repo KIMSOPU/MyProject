@@ -6,7 +6,7 @@ import com.board.domain.BoardVO;
 
 public interface BoardService {
 	// 게시물 목록 조회
-	public List<BoardVO> list() throws Exception;
+	public List<BoardVO> getList() throws Exception;
 
 	// 게시물 작성
 	public void write(BoardVO vo) throws Exception;
