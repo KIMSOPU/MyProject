@@ -120,9 +120,22 @@ public class BoardController {
 	  endPageNum = endPageNum_tmp;
 	 }
 	 
+	 boolean prev = startPageNum == 1 ? false : true;
+	 boolean next = endPageNum * pageNum_cnt >= count ? false : true;
+	 
+	 
 	 List<BoardVO> list = boardService.listPage(displayPost, postNum);
 	 model.addAttribute("list", list);   
 	 model.addAttribute("pageNum", pageNum);
+	 
+	// 시작 및 끝 번호
+	 model.addAttribute("startPageNum", startPageNum);
+	 model.addAttribute("endPageNum", endPageNum);
+
+	 // 이전 및 다음 
+	 model.addAttribute("prev", prev);
+	 model.addAttribute("next", next);
+	 
 	}
 	
 	
