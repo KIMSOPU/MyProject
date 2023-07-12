@@ -1,6 +1,7 @@
 package com.board.controller;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,7 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import com.board.domain.BoardVO;
+import com.board.domain.Page;
 import com.board.service.BoardService;
 
 @Controller
@@ -91,7 +94,7 @@ public class BoardController {
 	// 게시물 목록 + 페이징 추가
 	@GetMapping("/listPage")
 	public void getListPage(Model model, @RequestParam("num") int num) throws Exception {
-	 
+	/* 
 	 // 게시물 총 갯수
 	 int count = boardService.count();
 	  
@@ -138,7 +141,26 @@ public class BoardController {
 	 
 	// 현재 페이지
 	 model.addAttribute("select", num);
-	 
+	 */
+		Page page = new Page();
+		
+		page.setNum(num);
+		page.setCount(service.count());  
+
+		List<boardvo> list = null; 
+		list = service.listPage(page.getDisplayPost(), page.getPostNum());
+
+		model.addAttribute("list", list);   
+		model.addAttribute("pageNum", page.getPageNum());
+
+		model.addAttribute("startPageNum", page.getStartPageNum());
+		model.addAttribute("endPageNum", page.getEndPageNum());
+		 
+		  model.addAttribute("prev", page.getPrev());
+		model.addAttribute("next", page.getNext());  
+
+		model.addAttribute("select", num);
+		
 	}
 	
 	
