@@ -145,10 +145,10 @@ public class BoardController {
 		Page page = new Page();
 		
 		page.setNum(num);
-		page.setCount(service.count());  
+		page.setCount(boardService.count());  
 
-		List<boardvo> list = null; 
-		list = service.listPage(page.getDisplayPost(), page.getPostNum());
+		List<BoardVO> list = null; 
+		list = boardService.listPage(page.getDisplayPost(), page.getPostNum());
 
 		model.addAttribute("list", list);   
 		model.addAttribute("pageNum", page.getPageNum());
