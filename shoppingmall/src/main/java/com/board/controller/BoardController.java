@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.board.domain.BoardVO;
@@ -107,5 +108,24 @@ public class BoardController {
 		model.addAttribute("select", num);
 
 	}
+	
+	// 게시물 목록 + 페이징 추가
+	@RequestMapping(value = "/listPageSearch", method = RequestMethod.GET)
+	public void getListPageSearch(Model model, @RequestParam("num") int num) throws Exception {
+
+		Page page = new Page();
+
+		page.setNum(num);
+		page.setCount(boardService.count());
+
+		List<BoardVO> list = null;
+		list = boardService.listPage(page.getDisplayPost(), page.getPostNum());
+
+		model.addAttribute("list", list);
+		model.addAttribute("page", page);
+		model.addAttribute("select", num);
+
+	}
+	
 
 }
