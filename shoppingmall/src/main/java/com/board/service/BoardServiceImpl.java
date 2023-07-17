@@ -55,7 +55,7 @@ public class BoardServiceImpl implements BoardService {
 	 * }
 	 */
 
-//게시물 총 갯수
+	//게시물 총 갯수
 	@Override
 	public int count() throws Exception {
 		return boardDAO.count();
@@ -65,5 +65,12 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<BoardVO> listPage(int displayPost, int postNum) throws Exception {
 		return boardDAO.listPage(displayPost, postNum);
+	}
+
+	// 게시물 목록 + 페이징 + 검색
+	@Override
+	public List<BoardVO> listPageSearch(int displayPost, int postNum, String searchType, String keyword)
+			throws Exception {
+		return boardDAO.listPageSearch(displayPost, postNum, searchType, keyword);
 	}
 }
